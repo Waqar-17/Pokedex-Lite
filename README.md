@@ -1,36 +1,51 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Pokédex Lite
 
-## Getting Started
+A fast, responsive, and aesthetically pleasing Pokédex web application built with **Next.js** (App Router) and **TypeScript**. 
 
-First, run the development server:
+## Features
+- **Data Fetching:** Fetches Pokémon data from the [PokéAPI](https://pokeapi.co/).
+- **Search & Filter:** Instantly search by name or filter Pokémon by type.
+- **Pagination:** Browse through all available Pokémon efficiently.
+- **Favorites:** Mark Pokémon as favorites, persisting across sessions using `localStorage`.
+- **Detail Modal:** Click a Pokémon to view its high-res image, stats, abilities, and basic metrics.
+- **Responsive Design:** Optimized for mobile, tablet, and desktop viewports.
+- **Modern UI:** Uses a custom Neon Green & Dark theme inspired by modern glassmorphism.
 
+## Technologies Used
+- **Next.js 15 (App Router):** Provides Server-Side Rendering (SSR) capabilities for faster initial load, optimal SEO, and simple file-based routing.
+- **TypeScript:** Ensures type safety and better developer experience, preventing runtime errors.
+- **Vanilla CSS (CSS Modules):** Used strictly as requested for maximum flexibility, control, and scoping of styles without relying on utility frameworks like Tailwind.
+- **PokéAPI:** The comprehensive RESTful API for Pokémon data.
+
+## Challenges & Solutions
+1. **PokéAPI Listing Endpoint Constraints:** The main `/pokemon` endpoint only returns the name and URL of a Pokémon. It doesn't return the types or images. 
+   - *Solution:* Instead of making 1000+ individual requests which would be incredibly slow, I fetched the master list (`limit=10000`) of names and URLs once. I implemented searching locally on this master list. For type filtering, I fetch from the `/type/{type_name}` endpoint and intersect the lists client-side. The full details are only fetched for the Pokémon currently visible on the page (e.g., 20 at a time), ensuring the app remains lightning-fast.
+
+2. **Theming without Utility Frameworks:** Creating a robust, responsive dark mode with neon accents using only CSS.
+   - *Solution:* Implemented a strict CSS variables system in `globals.css` to manage theme tokens. This allows easy maintenance and consistent application of the Neon Green and Deep Dark styling.
+
+## Running the Project Locally
+
+### Prerequisites
+- Node.js (v18 or higher)
+- npm or yarn
+
+### Instructions
+
+1. Clone the repository and navigate into the directory.
+2. Install the dependencies:
+   ```bash
+   npm install
+   ```
+3. Start the development server:
+   ```bash
+   npm run dev
+   ```
+4. Open your browser and navigate to `http://localhost:3000`.
+
+## Build for Production
+To create a production build:
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm run build
+npm start
 ```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
