@@ -15,6 +15,7 @@ A fast, responsive, and aesthetically pleasing Pokédex web application built wi
 - **Next.js 15 (App Router):** Provides Server-Side Rendering (SSR) capabilities for faster initial load, optimal SEO, and simple file-based routing.
 - **TypeScript:** Ensures type safety and better developer experience, preventing runtime errors.
 - **Vanilla CSS (CSS Modules):** Used strictly as requested for maximum flexibility, control, and scoping of styles without relying on utility frameworks like Tailwind.
+- **NextAuth.js:** Implemented for secure, production-ready GitHub OAuth authentication.
 - **PokéAPI:** The comprehensive RESTful API for Pokémon data.
 
 ## Challenges & Solutions
@@ -23,6 +24,9 @@ A fast, responsive, and aesthetically pleasing Pokédex web application built wi
 
 2. **Theming without Utility Frameworks:** Creating a robust, responsive dark mode with neon accents using only CSS.
    - *Solution:* Implemented a strict CSS variables system in `globals.css` to manage theme tokens. This allows easy maintenance and consistent application of the Neon Green and Deep Dark styling.
+
+3. **Authentication & Deployment Configuration:** Integrating GitHub OAuth seamlessly while ensuring correct environment configurations across local and production environments (Vercel).
+   - *Solution:* Utilized NextAuth.js for a robust authentication flow. I ensured all callback URLs and environment variables (`NEXTAUTH_URL`, `NEXTAUTH_SECRET`, `GITHUB_ID`, `GITHUB_SECRET`) were strictly managed and synced between my local `.env.local` and the Vercel project settings to prevent deployment errors.
 
 ## Running the Project Locally
 
